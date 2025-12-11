@@ -1,0 +1,364 @@
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------
+ * Fonts
+ * ------------------------------------------------------------ */
+@font-face {
+  font-family: "KoPub Batang";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/KoPubBatang-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "KoPub Batang";
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/KoPubBatang-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/woff/pretendard-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/woff/pretendard-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/woff/pretendard-semibold.woff2") format("woff2");
+}
+
+/* ------------------------------------------------------------
+ * Design tokens
+ * ------------------------------------------------------------ */
+:root {
+  --font-size: 16px;
+
+  /* design tokens */
+  --bg-main: #050509;
+  --bg-main-alt: #0a0a0f;
+  --accent-main: #ffa41e;
+  --accent-strong: #ff3a1e;
+  --accent-soft: #f2c27d;
+  --text-main: #dddddd;
+  --text-muted: #bbbbbb;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  /* legacy aliases */
+  --color-bg: var(--bg-main-alt);
+  --color-text: var(--text-main);
+  --color-caption: var(--text-muted);
+  --color-gold-bright: var(--accent-main);
+  --color-gold-mid: #ffb54a;
+  --color-gold-soft: var(--accent-soft);
+  --color-gold-1: #ffb648;
+  --color-gold-2: #e08a24;
+  --color-gold-3: #c26b1a;
+  --color-gradient-strong: linear-gradient(120deg, var(--accent-main) 0%, var(--accent-strong) 100%);
+
+  /* theme palette */
+  --color-bg-dark: #0a0a0f;
+  --color-primary: #ffa41e;
+  --color-primary-light: #ffb84c;
+  --color-danger: #ff3a1e;
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --glow: 0 0 22px rgba(255, 164, 30, 0.4), 0 0 55px rgba(255, 58, 30, 0.22);
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-main-alt) 100%);
+  color: var(--color-text);
+  @apply font-pretendard;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------------------------------------
+ * Typography utilities
+ * ------------------------------------------------------------ */
+h1,
+h2 {
+  @apply font-kopub;
+}
+
+.heading-hero {
+  @apply font-kopub;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--accent-main);
+  text-shadow: var(--glow);
+  text-align: center;
+}
+
+.heading-2,
+.typography-h2 {
+  @apply font-kopub;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffb54a;
+}
+
+.heading-3,
+.typography-h3 {
+  @apply font-kopub;
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--accent-soft);
+}
+
+.body-text,
+.typography-body {
+  @apply font-pretendard;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.lead-text {
+  @apply font-pretendard;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.body-strong,
+.typography-body-strong {
+  @apply font-pretendard;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.caption-text,
+.typography-caption {
+  @apply font-pretendard;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.readable-block {
+  max-width: 72ch;
+  line-height: 1.7;
+}
+
+.split-lines {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.accent-text {
+  color: var(--color-gold-bright);
+}
+
+.title-gradient {
+  background: linear-gradient(120deg, var(--color-gold-1), var(--color-gold-2), var(--color-gold-3));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.soft-glow {
+  text-shadow: var(--glow);
+}
+
+/* ------------------------------------------------------------
+ * Cards, buttons, surfaces
+ * ------------------------------------------------------------ */
+.card-surface,
+.card-veil {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.card-emphasis {
+  border-color: rgba(255, 180, 80, 0.7);
+  box-shadow: 0 0 40px rgba(255, 160, 60, 0.35);
+}
+
+.rounded-card {
+  border-radius: 16px;
+}
+
+@media (min-width: 768px) {
+  .heading-1,
+  .typography-h1 {
+    font-size: 72px;
+  }
+
+  .heading-2,
+  .typography-h2 {
+    font-size: 48px;
+  }
+
+  .heading-3,
+  .typography-h3 {
+    font-size: 32px;
+  }
+
+  .body-text,
+  .typography-body,
+  .lead-text,
+  .body-strong {
+    font-size: 18px;
+  }
+}
+
+.primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.6rem;
+  border-radius: 999px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  background: linear-gradient(135deg, var(--accent-main), var(--accent-strong));
+  color: #000;
+  box-shadow: 0 12px 35px rgba(255, 120, 30, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.primary-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 50px rgba(255, 120, 30, 0.7);
+}
+
+.pattern-mist {
+  background: radial-gradient(circle at 20% 30%, rgba(255, 164, 30, 0.08) 0, transparent 35%), radial-gradient(circle at 80% 20%, rgba(255, 58, 30, 0.06) 0, transparent 30%), radial-gradient(circle at 50% 70%, rgba(255, 140, 26, 0.08) 0, transparent 35%);
+}
+
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 164, 30, 0.35), transparent);
+}
+
+.layout-container {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.tagline {
+  @apply font-pretendard;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 164, 30, 0.7);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------
+ * Animations
+ * ------------------------------------------------------------ */
+@keyframes float-soft {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 18px rgba(255, 164, 30, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 28px rgba(255, 164, 30, 0.6);
+  }
+}
+
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.soft-glow {
+  text-shadow: var(--glow);
+  animation: glow-pulse 3.5s ease-in-out infinite alternate;
+}
+
+.floating {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.light-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.light-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: translateX(-120%);
+  animation: light-sweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ------------------------------------------------------------
+ * Layout utilities
+ * ------------------------------------------------------------ */
+.section-shell {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+}
+
+.section-shell-narrow {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+  text-align: center;
+}
